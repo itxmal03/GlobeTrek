@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:globe_trek/core/constants.dart';
+import 'package:globe_trek/widgets/customized.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -8,6 +10,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  Customized customWidgets = Customized();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,99 +49,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
-
-                  
-                  SizedBox(
-                    width: 350,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.email, color: Colors.white),
-                        hintText: 'Email',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        filled: true,
-
-                        fillColor: Colors.white.withValues(alpha: 0.3),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(17),
-                          borderSide: BorderSide(
-                            color: Colors.white.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(17),
-                          borderSide: BorderSide(
-                            color: Colors.white.withValues(alpha: 0.2),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-               
-               
-                  SizedBox(height: 15),
-                  SizedBox(
-                    width: 350,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(
-                          Icons.visibility_off_sharp,
-                          color: Colors.white,
-                        ),
-                        hintText: 'Password',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        filled: true,
-                        fillColor: Colors.white.withValues(alpha: 0.3),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(17),
-                          borderSide: BorderSide(
-                            color: Colors.white.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(17),
-                          borderSide: BorderSide(
-                            color: Colors.white.withValues(alpha: 0.2),
-                          ),
-                        ),
-                      ),
-                    ),
+                  customWidgets.customTextField(
+                    hint: 'Name',
+                    icon: Icons.person,
                   ),
                   SizedBox(height: 15),
-                  SizedBox(
-                    width: 350,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(
-                          Icons.visibility_off_rounded,
-                          color: Colors.white,
-                        ),
-                        hintText: 'Confirm Password',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        filled: true,
-                        fillColor: Colors.white.withValues(alpha: 0.3),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(17),
-                          borderSide: BorderSide(
-                            color: Colors.white.withValues(alpha: 0.2),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(17),
-                          borderSide: BorderSide(
-                            color: Colors.white.withValues(alpha: 0.2),
-                          ),
-                        ),
-                      ),
-                    ),
+                  customWidgets.customTextField(
+                    hint: 'Email',
+                    icon: Icons.email,
+                  ),
+                  SizedBox(height: 15),
+                  customWidgets.customTextField(
+                    hint: 'Password',
+                    icon: Icons.visibility_off_sharp,
+                  ),
+                  SizedBox(height: 15),
+                  customWidgets.customTextField(
+                    hint: 'Confirm Password',
+                    icon: Icons.visibility_off_sharp,
                   ),
                   SizedBox(height: 15),
                   ElevatedButton(
@@ -154,7 +82,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
@@ -178,18 +105,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                   ),
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // SignInButton(Buttons.google, onPressed: () {}),
-                      // SignInButton(Buttons.appleDark, onPressed: () {}),
+                      Text(
+                        'Already have an account?',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: AppSizes.sm),
+                        child: InkWell(
+                          child: Text(
+                            'Sign In',
+                            style: TextStyle(
+                              color: const Color.fromARGB(255, 84, 52, 171),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          onTap: () {},
+                        ),
+                      ),
                     ],
-                  ),
-                  Text(
-                    'Already have an account? Sign In',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                    ),
                   ),
                 ],
               ),
