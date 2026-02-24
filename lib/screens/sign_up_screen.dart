@@ -24,7 +24,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Card(
             color: Colors.white.withValues(alpha: 0.2),
             elevation: 15,
-
             child: Container(
               width: 380,
               height: 550,
@@ -47,6 +46,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
+
+                  
                   SizedBox(
                     width: 350,
                     child: TextField(
@@ -75,6 +76,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
+               
+               
                   SizedBox(height: 15),
                   SizedBox(
                     width: 350,
@@ -182,7 +185,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   Text(
-                    'Already have an account? LogIn',
+                    'Already have an account? Sign In',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
