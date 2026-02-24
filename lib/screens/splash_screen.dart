@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globe_trek/core/constants/app_sizes.dart';
+import 'package:globe_trek/core/constants.dart';
 import 'package:globe_trek/screens/sign_up_screen.dart';
 
 class SplashScreen extends StatefulWidget {
