@@ -45,8 +45,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         'Sign Up',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 33,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -62,13 +62,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SizedBox(height: 15),
                   customWidgets.customTextField(
+                    isPassword: true,
                     hint: 'Password',
-                    icon: Icons.visibility_off_sharp,
+                    icon: Icons.lock,
                   ),
                   SizedBox(height: 15),
                   customWidgets.customTextField(
+                    isPassword: true,
                     hint: 'Confirm Password',
-                    icon: Icons.visibility_off_sharp,
+                    icon: Icons.lock,
                   ),
                   SizedBox(height: 15),
                   ElevatedButton(

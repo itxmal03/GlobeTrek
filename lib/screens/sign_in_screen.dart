@@ -42,11 +42,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     padding: const EdgeInsets.all(25.0),
                     child: Center(
                       child: Text(
-                        'Sign Up',
+                        'Sign In',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 33,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
@@ -58,7 +58,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(height: 15),
                   customWidgets.customTextField(
                     hint: 'Password',
-                    icon: Icons.visibility_off_sharp,
+                    icon: Icons.lock,
+                    isPassword: true
                   ),
                   SizedBox(height: 15),
                   ElevatedButton(
