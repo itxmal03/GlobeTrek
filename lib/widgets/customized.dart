@@ -46,7 +46,6 @@ class _CustomTextFieldState extends State<_CustomTextField> {
           ),
           filled: true,
           fillColor: Colors.white.withValues(alpha: 0.3),
-
           prefixIcon: Icon(widget.icon, color: Colors.white),
           suffixIcon: widget.isPassword
               ? IconButton(
@@ -63,7 +62,6 @@ class _CustomTextFieldState extends State<_CustomTextField> {
                   },
                 )
               : null,
-
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(17),
             borderSide:

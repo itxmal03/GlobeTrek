@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:globe_trek/core/constants.dart';
+import 'package:globe_trek/screens/homescreen.dart';
 import 'package:globe_trek/screens/sign_up_screen.dart';
 import 'package:globe_trek/widgets/customized.dart';
 
@@ -36,7 +37,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 color: Colors.white.withValues(alpha: 0.2),
               ),
               child: Column(
-                mainAxisAlignment:MainAxisAlignment.center ,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(25.0),
@@ -59,11 +60,16 @@ class _SignInScreenState extends State<SignInScreen> {
                   customWidgets.customTextField(
                     hint: 'Password',
                     icon: Icons.lock,
-                    isPassword: true
+                    isPassword: true,
                   ),
                   SizedBox(height: 15),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Homescreen()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       elevation: 3,
                       shape: RoundedRectangleBorder(
