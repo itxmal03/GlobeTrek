@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:globe_trek/core/constants.dart';
-import 'package:globe_trek/screens/sign_in_screen.dart';
+import 'package:globe_trek/screens/sign_up_screen.dart';
 import 'package:globe_trek/widgets/customized.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   Customized customWidgets = Customized();
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 color: Colors.white.withValues(alpha: 0.2),
               ),
               child: Column(
-                 mainAxisAlignment:MainAxisAlignment.center ,
+                mainAxisAlignment:MainAxisAlignment.center ,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(25.0),
@@ -52,22 +52,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   customWidgets.customTextField(
-                    hint: 'Name',
-                    icon: Icons.person,
-                  ),
-                  SizedBox(height: 15),
-                  customWidgets.customTextField(
                     hint: 'Email',
                     icon: Icons.email,
                   ),
                   SizedBox(height: 15),
                   customWidgets.customTextField(
                     hint: 'Password',
-                    icon: Icons.visibility_off_sharp,
-                  ),
-                  SizedBox(height: 15),
-                  customWidgets.customTextField(
-                    hint: 'Confirm Password',
                     icon: Icons.visibility_off_sharp,
                   ),
                   SizedBox(height: 15),
@@ -79,10 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadiusGeometry.circular(17),
                       ),
                     ),
-                    child: Text(
-                      'Create Account',
-                      style: TextStyle(fontSize: 18),
-                    ),
+                    child: Text('Sign In', style: TextStyle(fontSize: 18)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -111,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Already have an account?',
+                        "Don't have an account?",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w400,
@@ -121,7 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         padding: const EdgeInsets.only(left: AppSizes.sm),
                         child: InkWell(
                           child: Text(
-                            'Sign In',
+                            'Sign Up',
                             style: TextStyle(
                               color: const Color.fromARGB(255, 84, 52, 171),
                               fontWeight: FontWeight.w500,
@@ -131,7 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SignInScreen(),
+                                builder: (context) => SignUpScreen(),
                               ),
                             );
                           },
