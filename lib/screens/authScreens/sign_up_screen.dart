@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:globe_trek/core/constants.dart';
-import 'package:globe_trek/screens/homescreen.dart';
-import 'package:globe_trek/screens/sign_up_screen.dart';
+import 'package:globe_trek/screens/authScreens/sign_in_screen.dart';
 import 'package:globe_trek/widgets/customized.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   Customized customWidgets = Customized();
   @override
   Widget build(BuildContext context) {
@@ -37,13 +36,13 @@ class _SignInScreenState extends State<SignInScreen> {
                 color: Colors.white.withValues(alpha: 0.2),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                 mainAxisAlignment:MainAxisAlignment.center ,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(25.0),
                     child: Center(
                       child: Text(
-                        'Sign In',
+                        'Sign Up',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,
@@ -53,30 +52,39 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                   customWidgets.customTextField(
+                    hint: 'Name',
+                    icon: Icons.person,
+                  ),
+                  SizedBox(height: 15),
+                  customWidgets.customTextField(
                     hint: 'Email',
                     icon: Icons.email,
                   ),
                   SizedBox(height: 15),
                   customWidgets.customTextField(
+                    isPassword: true,
                     hint: 'Password',
                     icon: Icons.lock,
+                  ),
+                  SizedBox(height: 15),
+                  customWidgets.customTextField(
                     isPassword: true,
+                    hint: 'Confirm Password',
+                    icon: Icons.lock,
                   ),
                   SizedBox(height: 15),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Homescreen()),
-                      );
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       elevation: 3,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadiusGeometry.circular(17),
                       ),
                     ),
-                    child: Text('Sign In', style: TextStyle(fontSize: 18)),
+                    child: Text(
+                      'Create Account',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -105,7 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account?",
+                        'Already have an account?',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w400,
@@ -115,7 +123,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         padding: const EdgeInsets.only(left: AppSizes.sm),
                         child: InkWell(
                           child: Text(
-                            'Sign Up',
+                            'Sign In',
                             style: TextStyle(
                               color: const Color.fromARGB(255, 84, 52, 171),
                               fontWeight: FontWeight.w500,
@@ -125,7 +133,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SignUpScreen(),
+                                builder: (context) => SignInScreen(),
                               ),
                             );
                           },
