@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "779274727569",
+    "project_id": "globetrek-67056",
+    "storage_bucket": "globetrek-67056.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779274727569:android:4bb5269066b4aefd8c8f30",
+        "android_client_info": {
+          "package_name": "com.globetrek.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByY89mVzZuJj6kDWs0cR_uBkxgs5-WaVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

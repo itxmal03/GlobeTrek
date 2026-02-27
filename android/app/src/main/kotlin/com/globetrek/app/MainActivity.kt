@@ -1,4 +1,4 @@
-package com.example.globe_trek
+package com.globetrek.app
 
 import io.flutter.embedding.android.FlutterActivity
 
