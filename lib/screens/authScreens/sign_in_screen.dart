@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:globe_trek/core/constants.dart';
+import 'package:globe_trek/core/constants/constants.dart';
 import 'package:globe_trek/screens/homescreen.dart';
 import 'package:globe_trek/screens/authScreens/sign_up_screen.dart';
 import 'package:globe_trek/widgets/customized.dart';
