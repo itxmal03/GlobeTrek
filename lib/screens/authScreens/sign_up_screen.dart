@@ -89,8 +89,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     builder: (ctx, val, child) => ElevatedButton(
                       onPressed: () async {
                         final result = await val.signUp(
-                          _email.text.trim(),
-                          _password.text.trim(),
+                          userName: _name.text.toString(),
+                          email: _email.text.trim(),
+                          password: _password.text.trim(),
                         );
 
                         if (result) {

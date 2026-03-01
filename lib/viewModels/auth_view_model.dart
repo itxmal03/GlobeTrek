@@ -9,16 +9,23 @@ class AuthViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? errorMessage;
 
-  Future<bool> signUp(String email, String password) async {
+  Future<bool> signUp({
+    required String userName,
+    required String email,
+    required String password,
+  }) async {
     _isLoading = true;
     errorMessage = null;
     notifyListeners();
 
-    final result = await _repo.signUp(email, password);
+    final result = await _repo.signUp(
+      uName: userName,
+      uEmail: email,
+      uPassword: password,
+    );
 
     if (result.isFailure) {
       errorMessage = result.error;
-      print(errorMessage);
       notifyListeners();
       return false;
     }

@@ -10,10 +10,17 @@ class AuthRepository {
 
   AuthRepository(this._service);
 
-  Future<Result<UserCredential>> signUp(String email, String password) async {
+  Future<Result> signUp({
+    required String uName,
+    required String uEmail,
+    required String uPassword,
+  }) async {
     try {
-      final user = await _service.signUp(email, password);
-      print("signup successfull!");
+      final user = await _service.signUp(
+        userName: uName,
+        email: uEmail,
+        password: uPassword,
+      );
       return Result.success(user);
     } on FirebaseAuthException catch (e) {
       return Result.failure(_mapFirebaseError(e));
@@ -22,7 +29,6 @@ class AuthRepository {
     } on SocketException {
       return Result.failure("No internet connection.");
     } catch (e) {
-      print("SIGNUP ERROR: $e");
       return Result.failure("Something went wrong.");
     }
   }
