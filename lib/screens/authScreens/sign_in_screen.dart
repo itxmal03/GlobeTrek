@@ -13,6 +13,9 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   Customized customWidgets = Customized();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,11 +56,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                   customWidgets.customTextField(
+                    tController: _email,
                     hint: 'Email',
                     icon: Icons.email,
                   ),
                   SizedBox(height: 15),
                   customWidgets.customTextField(
+                    tController: _password,
                     hint: 'Password',
                     icon: Icons.lock,
                     isPassword: true,

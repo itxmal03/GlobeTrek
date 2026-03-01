@@ -4,12 +4,14 @@ class Customized {
   Widget customTextField({
     required String hint,
     required IconData icon,
+    required TextEditingController tController,
     bool isPassword = false,
   }) {
     return _CustomTextField(
       hint: hint,
       icon: icon,
       isPassword: isPassword,
+      controller: tController,
     );
   }
 }
@@ -18,11 +20,13 @@ class _CustomTextField extends StatefulWidget {
   final String hint;
   final IconData icon;
   final bool isPassword;
+  final TextEditingController controller;
 
   const _CustomTextField({
     required this.hint,
     required this.icon,
     required this.isPassword,
+    required this.controller,
   });
 
   @override
@@ -37,6 +41,7 @@ class _CustomTextFieldState extends State<_CustomTextField> {
     return SizedBox(
       width: 350,
       child: TextField(
+        controller: widget.controller,
         obscureText: widget.isPassword ? _obscureText : false,
         decoration: InputDecoration(
           hintText: widget.hint,
@@ -50,9 +55,7 @@ class _CustomTextFieldState extends State<_CustomTextField> {
           suffixIcon: widget.isPassword
               ? IconButton(
                   icon: Icon(
-                    _obscureText
-                        ? Icons.visibility_off
-                        : Icons.visibility,
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
                     color: Colors.white,
                   ),
                   onPressed: () {
@@ -64,13 +67,11 @@ class _CustomTextFieldState extends State<_CustomTextField> {
               : null,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(17),
-            borderSide:
-                BorderSide(color: Colors.white.withValues(alpha: 0.2)),
+            borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.2)),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(17),
-            borderSide:
-                BorderSide(color: Colors.white.withValues(alpha: 0.2)),
+            borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.2)),
           ),
         ),
       ),

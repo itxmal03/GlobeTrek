@@ -9,7 +9,7 @@ class AuthViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? errorMessage;
 
-  Future<void> signUp(String email, String password) async {
+  Future<bool> signUp(String email, String password) async {
     _isLoading = true;
     errorMessage = null;
     notifyListeners();
@@ -18,9 +18,13 @@ class AuthViewModel extends ChangeNotifier {
 
     if (result.isFailure) {
       errorMessage = result.error;
+      print(errorMessage);
+      notifyListeners();
+      return false;
     }
 
     _isLoading = false;
     notifyListeners();
+    return true;
   }
 }
