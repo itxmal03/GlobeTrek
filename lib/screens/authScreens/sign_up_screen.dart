@@ -169,28 +169,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           return;
                                         }
                                         final navigator = Navigator.of(context);
-                                        final scaffoldMessenger =
-                                            ScaffoldMessenger.of(context);
                                         final result = await val.signUp(
                                           userName: _name.text.trim(),
                                           email: _email.text.trim(),
                                           password: _password.text.trim(),
                                         );
                                         if (result) {
+                                          if (!context.mounted) return;
+                                          AppSnackBar.show(
+                                            context,
+                                            'Verification email sent. Check your inbox.',
+                                          );
                                           navigator.push(
                                             MaterialPageRoute(
                                               builder: (_) => SignInScreen(),
                                             ),
                                           );
-                                          scaffoldMessenger.showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                "Verification email sent. Check your inbox.",
-                                              ),
-                                            ),
+                                        } else {
+                                          if (!context.mounted) return;
+                                          AppSnackBar.show(
+                                            context,
+                                            "Unexpected error occured. Try again!",
                                           );
-                                        }else{
-                                          
                                         }
                                       },
                                 child: Center(

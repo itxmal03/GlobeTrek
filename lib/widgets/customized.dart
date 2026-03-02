@@ -6,8 +6,8 @@ class Customized {
     required IconData icon,
     required TextEditingController tController,
     bool isPassword = false,
-    String? Function(String?)? validator, // <- add validator
-    TextInputType keyboardType = TextInputType.text, // <- flexible input type
+    String? Function(String?)? validator,
+    TextInputType keyboardType = TextInputType.text,
   }) {
     return _CustomTextField(
       hint: hint,
@@ -84,6 +84,19 @@ class _CustomTextFieldState extends State<_CustomTextField> {
             borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.2)),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class AppSnackBar {
+  static void show(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Center(child: Text(message)),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: const Color(0xFF1E293B),
+        duration: const Duration(seconds: 2),
       ),
     );
   }
