@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:globe_trek/core/constants/constants.dart';
 import 'package:globe_trek/core/constants/size_config.dart';
 import 'package:globe_trek/screens/authScreens/sign_in_screen.dart';
-import 'package:globe_trek/screens/homescreen.dart';
 import 'package:globe_trek/viewModels/auth_view_model.dart';
 import 'package:globe_trek/widgets/customized.dart';
 import 'package:provider/provider.dart';
@@ -180,15 +179,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         if (result) {
                                           navigator.push(
                                             MaterialPageRoute(
-                                              builder: (_) => Homescreen(),
+                                              builder: (_) => SignInScreen(),
                                             ),
                                           );
-                                        } else {
                                           scaffoldMessenger.showSnackBar(
                                             SnackBar(
-                                              content: Text(val.errorMessage!),
+                                              content: Text(
+                                                "Verification email sent. Check your inbox.",
+                                              ),
                                             ),
                                           );
+                                        }else{
+                                          
                                         }
                                       },
                                 child: Center(

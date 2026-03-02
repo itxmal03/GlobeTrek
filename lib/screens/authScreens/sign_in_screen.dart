@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:globe_trek/core/constants/constants.dart';
 import 'package:globe_trek/core/constants/size_config.dart';
+import 'package:globe_trek/screens/authScreens/sign_up_screen.dart';
 // import 'package:globe_trek/screens/homescreen.dart';
 import 'package:globe_trek/viewModels/auth_view_model.dart';
 import 'package:globe_trek/widgets/customized.dart';
@@ -231,7 +232,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => SignInScreen(),
+                                      builder: (context) => SignUpScreen(),
                                     ),
                                   );
                                 },

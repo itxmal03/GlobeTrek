@@ -21,7 +21,10 @@ class AuthService {
       "email": email,
       "createdAt": Timestamp.now(),
     });
-    
+
+    await userCreds.user!.sendEmailVerification();
+    await _auth.signOut();
+
     return userCreds;
   }
 }
