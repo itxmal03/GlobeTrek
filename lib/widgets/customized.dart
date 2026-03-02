@@ -6,12 +6,16 @@ class Customized {
     required IconData icon,
     required TextEditingController tController,
     bool isPassword = false,
+    String? Function(String?)? validator, // <- add validator
+    TextInputType keyboardType = TextInputType.text, // <- flexible input type
   }) {
     return _CustomTextField(
       hint: hint,
       icon: icon,
       isPassword: isPassword,
       controller: tController,
+      validator: validator,
+      keyboardType: keyboardType,
     );
   }
 }
@@ -21,12 +25,16 @@ class _CustomTextField extends StatefulWidget {
   final IconData icon;
   final bool isPassword;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
+  final TextInputType keyboardType;
 
   const _CustomTextField({
     required this.hint,
     required this.icon,
     required this.isPassword,
     required this.controller,
+    this.validator,
+    this.keyboardType = TextInputType.text,
   });
 
   @override
@@ -40,9 +48,11 @@ class _CustomTextFieldState extends State<_CustomTextField> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 350,
-      child: TextField(
+      child: TextFormField(
         controller: widget.controller,
         obscureText: widget.isPassword ? _obscureText : false,
+        validator: widget.validator,
+        keyboardType: widget.keyboardType,
         decoration: InputDecoration(
           hintText: widget.hint,
           hintStyle: const TextStyle(
