@@ -169,22 +169,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             .validate()) {
                                           return;
                                         }
+                                        final navigator = Navigator.of(context);
+                                        final scaffoldMessenger =
+                                            ScaffoldMessenger.of(context);
                                         final result = await val.signUp(
                                           userName: _name.text.trim(),
                                           email: _email.text.trim(),
                                           password: _password.text.trim(),
                                         );
                                         if (result) {
-                                          Navigator.push(
-                                            context,
+                                          navigator.push(
                                             MaterialPageRoute(
                                               builder: (_) => Homescreen(),
                                             ),
                                           );
                                         } else {
-                                          ScaffoldMessenger.of(
-                                            context,
-                                          ).showSnackBar(
+                                          scaffoldMessenger.showSnackBar(
                                             SnackBar(
                                               content: Text(val.errorMessage!),
                                             ),
