@@ -189,7 +189,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           if (!context.mounted) return;
                                           AppSnackBar.show(
                                             context,
-                                            "Unexpected error occured. Try again!",
+                                            "${val.errorMessage}",
                                           );
                                         }
                                       },

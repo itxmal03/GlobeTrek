@@ -19,12 +19,31 @@ class AuthService {
     await FirebaseFirestore.instance.collection('users').doc(userId).set({
       "userName": userName,
       "email": email,
-      "createdAt": Timestamp.now(),
+      "createdAt": FieldValue.serverTimestamp(),
     });
 
     await userCreds.user!.sendEmailVerification();
     await _auth.signOut();
-
     return userCreds;
+  }
+
+  Future<UserCredential> signIn({
+    required String email,
+    required String password,
+  }) async {
+    final userCred = await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    if (!userCred.user!.emailVerified) {
+      await _auth.signOut();
+      throw FirebaseAuthException(
+        code: "email-not-verified",
+        message: "Please verify your email before logging in.",
+      );
+    }
+
+    return userCred;
   }
 }

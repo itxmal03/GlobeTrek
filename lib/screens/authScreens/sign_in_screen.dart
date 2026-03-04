@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:globe_trek/core/constants/constants.dart';
 import 'package:globe_trek/core/constants/size_config.dart';
 import 'package:globe_trek/screens/authScreens/sign_up_screen.dart';
-// import 'package:globe_trek/screens/homescreen.dart';
+import 'package:globe_trek/screens/homescreen.dart';
 import 'package:globe_trek/viewModels/auth_view_model.dart';
 import 'package:globe_trek/widgets/customized.dart';
 import 'package:provider/provider.dart';
@@ -136,25 +136,24 @@ class _SignInScreenState extends State<SignInScreen> {
                                             .validate()) {
                                           return;
                                         }
-                                        // final navigator = Navigator.of(context);
-                                        // final scaffoldMessenger =
-                                        //     ScaffoldMessenger.of(context);
-                                      
-                                        if (!mounted) return;
-                                        // if (result) {
-                                        //   navigator.push(
-                                        //     MaterialPageRoute(
-                                        //       builder: (_) => Homescreen(),
-                                        //     ),
-                                        //   );
-                                        // } else {
-                                        //   if (!mounted) return;
-                                        //   scaffoldMessenger.showSnackBar(
-                                        //     SnackBar(
-                                        //       content: Text(val.errorMessage!),
-                                        //     ),
-                                        //   );
-                                        // }
+                                        final navigator = Navigator.of(context);
+                                        final result = await val.signIn(
+                                          email: _email.text.trim(),
+                                          password: _password.text.trim(),
+                                        );
+                                        if (result) {
+                                          navigator.push(
+                                            MaterialPageRoute(
+                                              builder: (context) => Homescreen(),
+                                            ),
+                                          );
+                                        } else {
+                                          if (!context.mounted) return;
+                                          AppSnackBar.show(
+                                            context,
+                                            "${val.errorMessage}",
+                                          );
+                                        }
                                       },
                                 child: Center(
                                   child: val.isLoading

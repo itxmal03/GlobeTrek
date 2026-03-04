@@ -24,13 +24,30 @@ class AuthViewModel extends ChangeNotifier {
       uPassword: password,
     );
 
+    _isLoading = false;
+
     if (result.isFailure) {
       errorMessage = result.error;
       notifyListeners();
       return false;
     }
 
+    notifyListeners();
+    return true;
+  }
+
+  Future<bool> signIn({required String email, required String password}) async {
+    _isLoading = true;
+    errorMessage = null;
+    notifyListeners();
+    final result = await _repo.signIn(uEmail: email, uPassword: password);
     _isLoading = false;
+    if (result.isFailure) {
+      errorMessage = result.error;
+      notifyListeners();
+      return false;
+    }
+
     notifyListeners();
     return true;
   }
