@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:globe_trek/screens/authScreens/sign_up_screen.dart';
+import 'package:globe_trek/screens/authScreens/sign_in_screen.dart';
+import 'package:globe_trek/screens/homescreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,13 +19,20 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _navigate() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => const SignUpScreen()),
-    );
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null && user.emailVerified) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const Homescreen()),
+      );
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const SignInScreen()),
+      );
+    }
   }
 
   @override

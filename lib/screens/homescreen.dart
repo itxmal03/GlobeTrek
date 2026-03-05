@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:globe_trek/screens/authScreens/sign_in_screen.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -47,7 +49,7 @@ class _HomescreenState extends State<Homescreen> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                SizedBox(height:40),
+                SizedBox(height: 40),
                 SizedBox(
                   width: 350,
                   child: Text(
@@ -80,20 +82,34 @@ class _HomescreenState extends State<Homescreen> {
                   children: [
                     Text(
                       'Popular',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                    Text(
-                      'See All',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                        color: Colors.blue,
+                        fontSize: 20,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        await FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const SignInScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'See All',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 20),
-            
+
                 SizedBox(
                   height: 240,
                   child: ListView.builder(
@@ -104,7 +120,7 @@ class _HomescreenState extends State<Homescreen> {
                     itemBuilder: (context, index) {
                       return Container(
                         width: 165,
-                        margin: EdgeInsets.symmetric(horizontal: 6),         
+                        margin: EdgeInsets.symmetric(horizontal: 6),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(11),
                           image: DecorationImage(
@@ -133,7 +149,10 @@ class _HomescreenState extends State<Homescreen> {
                   children: [
                     Text(
                       'Nearest Places',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
                     Text(
                       'See All',
@@ -151,7 +170,7 @@ class _HomescreenState extends State<Homescreen> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: vertipics.length,
                   shrinkWrap: true,
-            
+
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(6.0),
