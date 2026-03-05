@@ -17,10 +17,11 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  final FocusNode _emailFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
 
   final _formKey = GlobalKey<FormState>();
 
-  Customized customWidgets = Customized();
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
@@ -64,7 +65,12 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                       ),
-                      customWidgets.customTextField(
+                      CustomizedTextField(
+                        isPassword: false,
+                        focusNode: _emailFocus,
+                        onSubmitted: (_) {
+                          FocusScope.of(context).requestFocus(_passwordFocus);
+                        },
                         tController: _email,
                         hint: 'Email',
                         icon: Icons.email,
@@ -79,7 +85,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                       ),
                       SizedBox(height: 15),
-                      customWidgets.customTextField(
+                      CustomizedTextField(
+                        focusNode: _passwordFocus,
+                        onSubmitted: (_) {
+                          FocusScope.of(context).unfocus();
+                        },
                         tController: _password,
                         isPassword: true,
                         hint: 'Password',
@@ -144,7 +154,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                         if (result) {
                                           navigator.push(
                                             MaterialPageRoute(
-                                              builder: (context) => Homescreen(),
+                                              builder: (context) =>
+                                                  Homescreen(),
                                             ),
                                           );
                                         } else {

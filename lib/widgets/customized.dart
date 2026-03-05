@@ -1,47 +1,32 @@
 import 'package:flutter/material.dart';
 
-class Customized {
-  Widget customTextField({
-    required String hint,
-    required IconData icon,
-    required TextEditingController tController,
-    bool isPassword = false,
-    String? Function(String?)? validator,
-    TextInputType keyboardType = TextInputType.text,
-  }) {
-    return _CustomTextField(
-      hint: hint,
-      icon: icon,
-      isPassword: isPassword,
-      controller: tController,
-      validator: validator,
-      keyboardType: keyboardType,
-    );
-  }
-}
-
-class _CustomTextField extends StatefulWidget {
+class CustomizedTextField extends StatefulWidget {
   final String hint;
   final IconData icon;
   final bool isPassword;
-  final TextEditingController controller;
+  final TextEditingController tController;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
+  final FocusNode focusNode;
+  final void Function(String)? onSubmitted;
 
-  const _CustomTextField({
+  const CustomizedTextField({
     required this.hint,
     required this.icon,
     required this.isPassword,
-    required this.controller,
+    required this.tController,
     this.validator,
     this.keyboardType = TextInputType.text,
+    required this.focusNode,
+    required this.onSubmitted,
+    super.key,
   });
 
   @override
-  State<_CustomTextField> createState() => _CustomTextFieldState();
+  State<CustomizedTextField> createState() => _CustomizedTextFieldState();
 }
 
-class _CustomTextFieldState extends State<_CustomTextField> {
+class _CustomizedTextFieldState extends State<CustomizedTextField> {
   bool _obscureText = true;
 
   @override
@@ -49,7 +34,9 @@ class _CustomTextFieldState extends State<_CustomTextField> {
     return SizedBox(
       width: 350,
       child: TextFormField(
-        controller: widget.controller,
+        focusNode: widget.focusNode,
+        onFieldSubmitted: widget.onSubmitted,
+        controller: widget.tController,
         obscureText: widget.isPassword ? _obscureText : false,
         validator: widget.validator,
         keyboardType: widget.keyboardType,
