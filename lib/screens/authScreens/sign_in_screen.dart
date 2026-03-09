@@ -152,7 +152,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                           password: _password.text.trim(),
                                         );
                                         if (result) {
-                                          navigator.push(
+                                          navigator.pushReplacement(
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   Homescreen(),
