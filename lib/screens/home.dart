@@ -11,6 +11,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  
   List horipics = [
     {'img': 'assets/images/hori1.jpeg', 'name': 'Bali Highlands'},
     {'img': 'assets/images/hori2.jpeg', 'name': 'Maldives'},
