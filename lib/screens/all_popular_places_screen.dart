@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:globe_trek/screens/popular_place_details.dart';
 import 'package:globe_trek/viewModels/popular_places_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -116,40 +117,16 @@ class _AllPopularPlacesScreenState extends State<AllPopularPlacesScreen> {
                           child: FadeInAnimation(
                             child: ListTile(
                               onTap: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => DetailsScreen(
-                                //       countryName: countryName,
-                                //       active: val
-                                //           .filteredCountriesList[index]['active']
-                                //           .toString(),
-                                //       population: val
-                                //           .filteredCountriesList[index]['population']
-                                //           .toString(),
-                                //       todayCases: val
-                                //           .filteredCountriesList[index]['todayCases']
-                                //           .toString(),
-                                //       totalDeaths: val
-                                //           .filteredCountriesList[index]['deaths']
-                                //           .toString(),
-                                //       totalCases: val
-                                //           .filteredCountriesList[index]['cases']
-                                //           .toString(),
-                                //       totalRecovered: val
-                                //           .filteredCountriesList[index]['recovered']
-                                //           .toString(),
-                                //       image: val
-                                //           .filteredCountriesList[index]['countryInfo']['flag'],
-                                //       continent: val
-                                //           .filteredCountriesList[index]['continent'],
-                                //       crtitcal: val
-                                //           .filteredCountriesList[index]['critical']
-                                //           .toString(),
-                                //     ),
-
-                                //   ),
-                                // );
+                               Navigator.push(context, MaterialPageRoute(builder: (context)=>PopularPlaceDetails(
+                                name:placeName, 
+                                city:val.placesList[index].city! , 
+                                country: val.placesList[index].country!, 
+                                lat: val.placesList[index].lat!,
+                                 lng: val.placesList[index].lng!,
+                                 rating: val.placesList[index].rating!,
+                                  description: val.placesList[index].description!,
+                                   image: val.placesList[index].image!,
+                                    gallery: val.placesList[index].gallery!)));
                               },
                               leading: SizedBox(
                                 height: 50,

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:globe_trek/core/constants/size_config.dart';
 import 'package:globe_trek/screens/all_popular_places_screen.dart';
-import 'package:globe_trek/screens/popular_place_details.dart';
 import 'package:globe_trek/viewModels/popular_places_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -139,6 +138,7 @@ class _HomeState extends State<Home> {
                       return Center(child: Text("No places found"));
                     }
                     final popularImagesList = val.placesList;
+                    
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       physics: BouncingScrollPhysics(),
@@ -180,6 +180,7 @@ class _HomeState extends State<Home> {
                         );
                       },
                     );
+               
                   },
                 ),
               ),
