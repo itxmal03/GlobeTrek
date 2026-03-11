@@ -53,6 +53,9 @@ class _HomescreenState extends State<Homescreen> {
         elevation: 2,
         type: BottomNavigationBarType.fixed,
         iconSize: 28,
+        onTap: (value) {
+            selectedScreen(value);
+        },
       ),
     );
   }

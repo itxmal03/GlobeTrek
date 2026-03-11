@@ -4,6 +4,7 @@ import 'package:globe_trek/core/services/auth_service.dart';
 import 'package:globe_trek/repositories/auth_repository.dart';
 import 'package:globe_trek/screens/splash_screen.dart';
 import 'package:globe_trek/viewModels/auth_view_model.dart';
+import 'package:globe_trek/viewModels/popular_places_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -16,6 +17,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthViewModel(authRepo)),
+        ChangeNotifierProvider(create: (context) => PopularPlacesViewModel()),
       ],
       child: const MyApp(),
     ),
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'GlobeTrek',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

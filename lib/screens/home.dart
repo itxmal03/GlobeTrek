@@ -1,7 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:globe_trek/core/constants/size_config.dart';
-import 'package:globe_trek/screens/authScreens/sign_in_screen.dart';
+import 'package:globe_trek/screens/all_popular_places_screen.dart';
+import 'package:globe_trek/screens/popular_place_details.dart';
+import 'package:globe_trek/viewModels/popular_places_view_model.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,7 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
   List horipics = [
     {'img': 'assets/images/hori1.jpeg', 'name': 'Bali Highlands'},
     {'img': 'assets/images/hori2.jpeg', 'name': 'Maldives'},
@@ -41,6 +43,16 @@ class _HomeState extends State<Home> {
       'subtitle': 'Where Peaks Touch the Sky',
     },
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    final popularVM = Provider.of<PopularPlacesViewModel>(
+      context,
+      listen: false,
+    );
+    popularVM.getPlaces();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,11 +107,12 @@ class _HomeState extends State<Home> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   InkWell(
-                    onTap: () async {
-                      await FirebaseAuth.instance.signOut();
-                      Navigator.pushReplacement(
+                    onTap: () {
+                      Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => const SignInScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => AllPopularPlacesScreen(),
+                        ),
                       );
                     },
                     child: Text(
@@ -114,36 +127,58 @@ class _HomeState extends State<Home> {
                 ],
               ),
               SizedBox(height: 20),
-
               SizedBox(
                 height: 240,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  itemCount: horipics.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      width: 165,
-                      margin: EdgeInsets.symmetric(horizontal: 6),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(11),
-                        image: DecorationImage(
-                          image: AssetImage(horipics[index]['img']),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      alignment: Alignment.bottomLeft,
-                      padding: EdgeInsets.all(8),
-                      child: Text(
-                        horipics[index]['name'],
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          backgroundColor: Colors.black45,
-                        ),
-                      ),
+                child: Consumer<PopularPlacesViewModel>(
+                  builder: (context, val, child) {
+                    if (val.isLoading) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+
+                    if (val.placesList.isEmpty) {
+                      return Center(child: Text("No places found"));
+                    }
+                    final popularImagesList = val.placesList;
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      physics: BouncingScrollPhysics(),
+                      itemCount: 6,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: 165,
+                          margin: EdgeInsets.symmetric(horizontal: 6),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            image: DecorationImage(
+                              image: CachedNetworkImageProvider(
+                                popularImagesList[index].image!,
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          alignment: Alignment.bottomLeft,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(16),
+
+                                bottomRight: Radius.circular(16),
+                              ),
+                              color: Colors.black54,
+                            ),
+                            width: double.infinity,
+                            padding: EdgeInsets.all(8),
+                            child: Text(
+                              popularImagesList[index].name!,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),
