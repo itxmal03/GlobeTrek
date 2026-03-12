@@ -43,7 +43,7 @@ class _PopularPlaceDetailsState extends State<PopularPlaceDetails>
   late AnimationController _slideController;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
-
+ 
   double _scrollOffset = 0.0;
   int _selectedImageIndex = 0;
   bool _isSaved = false;
